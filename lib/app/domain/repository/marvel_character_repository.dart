@@ -14,5 +14,6 @@ abstract interface class MarvelCharacterRepository {
   Future<Either<CustomException, List<CharacterPreviewEntity>>>
       searchCharacters(String name);
 
-  Future<Either<CustomException, CharacterOverviewEntity>> getCharacter(int id);
+  Future<Either<CustomException, CharacterOverviewEntity>> getCharacterById(
+      int id);
 }
