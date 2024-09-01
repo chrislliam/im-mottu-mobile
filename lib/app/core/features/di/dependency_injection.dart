@@ -1,7 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import '../../../../marvel_controller.dart';
 import '../http_client/http_client.dart';
 import '../../network/network_info.dart';
 import '../../network/network_info_datasource.dart';
@@ -18,10 +16,6 @@ class DependencyInjection {
 
     Get.lazyPut<NetworkInfo>(
       () => NetworkInfo(Get.find<NetworkInfoDatasource>()),
-    );
-
-    Get.lazyPut<MarvelController>(
-      () => MarvelController(Get.find<HttpClient>()),
     );
   }
 }

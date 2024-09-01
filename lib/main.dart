@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dependency_injection.dart';
+import 'app/core/features/di/dependency_injection.dart';
 
 void main() async{
   DependencyInjection.init();
