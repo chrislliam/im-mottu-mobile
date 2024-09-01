@@ -10,7 +10,7 @@
 .svn/
 migrate_working_dir/
 
-# ignore files gerenated for Mac OS
+# ignore all files related to the IOS platform
 **/._*
 
 # IntelliJ related
