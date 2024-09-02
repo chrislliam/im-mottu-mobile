@@ -30,4 +30,5 @@ class CharacterPreviewEntityMock {
   ];
 
   static CharacterPreviewEntity get firstCharacterPreview => list[0];
+  static CharacterPreviewEntity get spiderMan => list[0];
 }

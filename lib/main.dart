@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'app/core/features/di/dependency_injection.dart';
+import 'app/core/features/local_storage/local_storage.dart';
 
-void main() async{
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorage.init();
   DependencyInjection.init();
   runApp(const AppWidget());
 }
-
-
-
 
 class AppWidget extends StatefulWidget {
   const AppWidget({super.key});

@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 
 import '../constants/constants.dart';
 
-abstract interface class HttpClient {
+abstract interface class CoreHttpClient {
   Future<Response> get(
     String path, {
     Map<String, dynamic> body,
@@ -14,7 +14,7 @@ abstract interface class HttpClient {
   });
 }
 
-class DioHttpClient extends HttpClient {
+class DioHttpClient extends CoreHttpClient {
   Dio get _dio => Dio(baseOptions);
 
   @override
