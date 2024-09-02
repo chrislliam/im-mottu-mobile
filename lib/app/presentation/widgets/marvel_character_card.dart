@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/features/routes/app_navigator.dart';
 import '../../domain/entities/character_preview_entity.dart';
 
 class MarvelCharacterCard extends StatelessWidget {
@@ -40,7 +41,7 @@ class MarvelCharacterCard extends StatelessWidget {
           ),
         ),
         trailing: InkWell(
-          onTap: () => print('Ver detalhes'),
+          onTap: () => AppNavigator.characterOverview(characterId: preview.id),
           borderRadius: BorderRadius.circular(20),
           child: Container(
             decoration: const BoxDecoration(
