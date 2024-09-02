@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app/core/features/di/dependency_injection.dart';
 import 'app/core/features/local_storage/local_storage.dart';
+import 'app/presentation/pages/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,19 +27,5 @@ class _AppWidgetState extends State<AppWidget> {
       ),
       home: const HomePage(),
     );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

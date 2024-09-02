@@ -8,7 +8,8 @@ import 'package:im_mottu_mobile/app/domain/usecases/search_characters_usecase.da
 
 import '../../../mocks/character_preview_entity_mock.dart';
 
-class MockMarvelCharacterRepository extends Mock implements MarvelCharacterRepository {}
+class MockMarvelCharacterRepository extends Mock
+    implements MarvelCharacterRepository {}
 
 void main() {
   late SearchCharactersUsecase usecase;
@@ -22,8 +23,11 @@ void main() {
   const nameToSearch = 'Homem Aranha';
   final characterList = [CharacterPreviewEntityMock.firstCharacterPreview];
 
-  test('should return a list of CharacterPreviewEntity based on the name from the repository', () async {
-    when(() => mockRepository.searchCharacters(nameToSearch)).thenAnswer((_) async => Right(characterList));
+  test(
+      'should return a list of CharacterPreviewEntity based on the name from the repository',
+      () async {
+    when(() => mockRepository.searchCharacters(nameToSearch))
+        .thenAnswer((_) async => Right(characterList));
 
     final result = await usecase(name: nameToSearch);
 
@@ -34,7 +38,8 @@ void main() {
 
   test('should return a CustomException when the repository fails', () async {
     final cException = CustomException('Failed to search characters', 500);
-    when(() => mockRepository.searchCharacters(nameToSearch)).thenAnswer((_) async => Left(cException));
+    when(() => mockRepository.searchCharacters(nameToSearch))
+        .thenAnswer((_) async => Left(cException));
 
     final result = await usecase(name: nameToSearch);
 
