@@ -7,23 +7,22 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../mocks/character_overview_entity_mock.dart';
 
-class MockMarvelCharacterRepository extends Mock implements MarvelCharacterRepository {}
+class MockMarvelCharacterRepository extends Mock
+    implements MarvelCharacterRepository {}
 
 void main() {
   late GetCharacterByIdUsecase usecase;
   late MockMarvelCharacterRepository mockRepository;
-
 
   setUp(() {
     mockRepository = MockMarvelCharacterRepository();
     usecase = GetCharacterByIdUsecase(mockRepository);
   });
 
-  const characterId = 1; 
+  const characterId = 1;
   final characterOveview = CharacterOverviewEntityMock.characterOverviewEntity;
 
   test('should get character overview from the repository', () async {
-    
     when(() => mockRepository.getCharacterById(characterId))
         .thenAnswer((_) async => Right(characterOveview));
 
@@ -37,11 +36,10 @@ void main() {
   });
 
   test('should return CustomException when there is an error', () async {
-    
     final cException = CustomException('Error message', 404);
     when(() => mockRepository.getCharacterById(characterId))
         .thenAnswer((_) async => Left(cException));
-        
+
     final result = await usecase(id: characterId);
     expect(result, Left(cException));
     verify(() => mockRepository.getCharacterById(characterId)).called(1);

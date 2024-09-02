@@ -6,7 +6,8 @@ class CharacterOverviewAdapter {
       id: json['id'],
       name: json['name'],
       description: json['description'],
-      thumbnail: json['thumbnail']['path'] + '.' + json['thumbnail']['extension'],
+      thumbnail:
+          json['thumbnail']['path'] + '.' + json['thumbnail']['extension'],
     );
   }
 }
