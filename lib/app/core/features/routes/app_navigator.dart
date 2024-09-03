@@ -19,8 +19,6 @@ class _HomeNavigator {
 }
 
 class _CharOverviewNavigator {
-  Future<void> call({required int characterId}) async => await Get.toNamed(
-        '/character_overview',
-        arguments: characterId,
-      );
+  Future<void> call({required int characterId}) async =>
+      await Get.toNamed('/character_overview', arguments: characterId);
 }
