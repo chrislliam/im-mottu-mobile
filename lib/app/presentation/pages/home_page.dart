@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:im_mottu_mobile/app/presentation/states/home_page_state.dart';
 
-import '../controllers/marvel_character_controler.dart';
+import '../controllers/home_page_controller.dart';
 import '../widgets/marvel_character_card.dart';
 
 class HomePage extends StatefulWidget {
