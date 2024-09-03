@@ -22,7 +22,8 @@ class CharacterOverviewAdapter {
         firstEventId: getFirstId(json['events']['items']),
         firstStoryId: getFirstId(json['stories']['items']),
       ),
-      thumbnail: json['thumbnail']['path'] + '.' + json['thumbnail']['extension'],
+      thumbnail:
+          json['thumbnail']['path'] + '.' + json['thumbnail']['extension'],
     );
   }
 }

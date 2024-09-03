@@ -29,9 +29,11 @@ void main() {
         'should return CharacterOverviewEntity when getCharacterById is called',
         () async {
       final character = CharacterOverviewEntity(
-        firstEncounter: CharacterFirstEncounter(
-            firstComicId: 1, firstSerieId: 1, firstEventId: 1, firstStoryId: 1
-        ),
+          firstEncounter: CharacterFirstEncounter(
+              firstComicId: 1,
+              firstSerieId: 1,
+              firstEventId: 1,
+              firstStoryId: 1),
           id: testId,
           name: 'Spider-Man',
           thumbnail: 'thumbnail.png',
