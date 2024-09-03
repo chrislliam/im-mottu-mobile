@@ -9,7 +9,8 @@ import 'package:im_mottu_mobile/app/domain/usecases/get_filtered_characters_list
 
 import '../../../mocks/character_preview_entity_mock.dart';
 
-class MockMarvelCharacterRepository extends Mock implements MarvelCharacterRepository {}
+class MockMarvelCharacterRepository extends Mock
+    implements MarvelCharacterRepository {}
 
 void main() {
   late GetFilteredCharactersListUsecase usecase;
@@ -25,25 +26,32 @@ void main() {
   const offset = 0;
   final tCharacters = CharacterPreviewEntityMock.list;
 
-  test('should return a list of CharacterPreviewEntity based on the filter from the repository', () async {
-    
-    when(() => mockRepository.getFilteredLCharactersList(contentType, characterId, offset))
+  test(
+      'should return a list of CharacterPreviewEntity based on the filter from the repository',
+      () async {
+    when(() => mockRepository.getFilteredLCharactersList(
+            contentType, characterId, offset))
         .thenAnswer((_) async => Right(tCharacters));
 
-    final result = await usecase(filter: contentType, id: characterId, offset: offset);
+    final result =
+        await usecase(filter: contentType, id: characterId, offset: offset);
 
     expect(result, Right(tCharacters));
-    verify(() => mockRepository.getFilteredLCharactersList(contentType, characterId, offset)).called(1);
+    verify(() => mockRepository.getFilteredLCharactersList(
+        contentType, characterId, offset)).called(1);
     verifyNoMoreInteractions(mockRepository);
   });
 
   test('should return a CustomException when the repository fails', () async {
     final cException = CustomException('Failed to load characters', 500);
-    when(() => mockRepository.getFilteredLCharactersList(contentType, characterId, offset))
+    when(() => mockRepository.getFilteredLCharactersList(
+            contentType, characterId, offset))
         .thenAnswer((_) async => Left(cException));
-    final result = await usecase(filter: contentType, id: characterId, offset: offset);
+    final result =
+        await usecase(filter: contentType, id: characterId, offset: offset);
     expect(result, Left(cException));
-    verify(() => mockRepository.getFilteredLCharactersList(contentType, characterId, offset)).called(1);
+    verify(() => mockRepository.getFilteredLCharactersList(
+        contentType, characterId, offset)).called(1);
     verifyNoMoreInteractions(mockRepository);
   });
 }

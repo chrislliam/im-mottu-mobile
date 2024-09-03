@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+
 class CustomException implements Exception {
   final String _message;
   final int? code;

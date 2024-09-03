@@ -6,6 +6,8 @@ class Constants {
   static const cache = 'cache';
   static const characters = 'characters';
 
-  static const connectivityEventChannel = 'com.mottu.marvel.im_mottu_mobile/connectivity/event';
-  static const connectivityMethodChannel = 'com.mottu.marvel.im_mottu_mobile/connectivity/method';
+  static const connectivityEventChannel =
+      'com.mottu.marvel.im_mottu_mobile/connectivity/event';
+  static const connectivityMethodChannel =
+      'com.mottu.marvel.im_mottu_mobile/connectivity/method';
 }

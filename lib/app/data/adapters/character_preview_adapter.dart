@@ -4,7 +4,8 @@ class CharacterPreviewAdapter {
   static CharacterPreviewEntity fromJson(dynamic json) {
     return CharacterPreviewEntity(
       id: json['id'],
-      thumbnail: json['thumbnail']['path'] + '.' + json['thumbnail']['extension'],
+      thumbnail:
+          json['thumbnail']['path'] + '.' + json['thumbnail']['extension'],
       name: json['name'],
     );
   }

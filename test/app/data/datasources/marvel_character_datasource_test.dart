@@ -8,8 +8,8 @@ import 'package:im_mottu_mobile/app/domain/enum/character_by_content_type.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:dartz/dartz.dart';
 
-
-class MockMarvelCharacterDataSource extends Mock implements MarvelCharacterDataSource {}
+class MockMarvelCharacterDataSource extends Mock
+    implements MarvelCharacterDataSource {}
 
 void main() {
   late MarvelCharacterRepositoryImpl repository;
@@ -25,19 +25,33 @@ void main() {
     const int testOffset = 0;
     const String testName = 'Spider-Man';
 
-    test('should return CharacterOverviewEntity when getCharacterById is called', () async {
-      final character = CharacterOverviewEntity(id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png', description: 'Description');
+    test(
+        'should return CharacterOverviewEntity when getCharacterById is called',
+        () async {
+      final character = CharacterOverviewEntity(
+          firstEncounter: CharacterFirstEncounter(
+              firstComicId: 1,
+              firstSerieId: 1,
+              firstEventId: 1,
+              firstStoryId: 1),
+          id: testId,
+          name: 'Spider-Man',
+          thumbnail: 'thumbnail.png',
+          description: 'Description');
 
-      when(() => mockDataSource.getCharacterById(testId)).thenAnswer((_) async => character);
+      when(() => mockDataSource.getCharacterById(testId))
+          .thenAnswer((_) async => character);
 
       final result = await repository.getCharacterById(testId);
 
       expect(result, Right(character));
     });
 
-    test('should return CustomException when getCharacterById throws CustomException', () async {
+    test(
+        'should return CustomException when getCharacterById throws CustomException',
+        () async {
       final exception = CustomException('Error', 404);
-      
+
       when(() => mockDataSource.getCharacterById(testId)).thenThrow(exception);
 
       final result = await repository.getCharacterById(testId);
@@ -45,27 +59,38 @@ void main() {
       expect(result, Left(exception));
     });
 
-    test('should return CustomException when getCharacterById throws an unexpected error', () async {
-      when(() => mockDataSource.getCharacterById(testId)).thenThrow(Exception('Unexpected error'));
+    test(
+        'should return CustomException when getCharacterById throws an unexpected error',
+        () async {
+      when(() => mockDataSource.getCharacterById(testId))
+          .thenThrow(Exception('Unexpected error'));
 
       final result = await repository.getCharacterById(testId);
 
       expect(result, isA<Left<CustomException, CharacterOverviewEntity>>());
     });
 
-    test('should return a list of CharacterPreviewEntity when getCharacters is called', () async {
-      final characterList = [CharacterPreviewEntity(id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png')];
+    test(
+        'should return a list of CharacterPreviewEntity when getCharacters is called',
+        () async {
+      final characterList = [
+        CharacterPreviewEntity(
+            id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png')
+      ];
 
-      when(() => mockDataSource.getCharacters(testOffset)).thenAnswer((_) async => characterList);
+      when(() => mockDataSource.getCharacters(testOffset))
+          .thenAnswer((_) async => characterList);
 
       final result = await repository.getCharacters(testOffset);
 
       expect(result, Right(characterList));
     });
 
-    test('should return CustomException when getCharacters throws CustomException', () async {
+    test(
+        'should return CustomException when getCharacters throws CustomException',
+        () async {
       final exception = CustomException('Error', 404);
-      
+
       when(() => mockDataSource.getCharacters(testOffset)).thenThrow(exception);
 
       final result = await repository.getCharacters(testOffset);
@@ -73,68 +98,104 @@ void main() {
       expect(result, Left(exception));
     });
 
-    test('should return CustomException when getCharacters throws an unexpected error', () async {
-      when(() => mockDataSource.getCharacters(testOffset)).thenThrow(Exception('Unexpected error'));
+    test(
+        'should return CustomException when getCharacters throws an unexpected error',
+        () async {
+      when(() => mockDataSource.getCharacters(testOffset))
+          .thenThrow(Exception('Unexpected error'));
 
       final result = await repository.getCharacters(testOffset);
 
-      expect(result, isA<Left<CustomException, List<CharacterPreviewEntity>>>());
+      expect(
+          result, isA<Left<CustomException, List<CharacterPreviewEntity>>>());
     });
 
-    test('should return filtered characters list when getFilteredLCharactersList is called', () async {
-      final characterList = [CharacterPreviewEntity(id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png')];
+    test(
+        'should return filtered characters list when getFilteredLCharactersList is called',
+        () async {
+      final characterList = [
+        CharacterPreviewEntity(
+            id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png')
+      ];
 
-      when(() => mockDataSource.getFilteredLCharactersList(CharacterByContentType.comics, testId, testOffset)).thenAnswer((_) async => characterList);
+      when(() => mockDataSource.getFilteredLCharactersList(
+              CharacterByContentType.comics, testId, testOffset))
+          .thenAnswer((_) async => characterList);
 
-      final result = await repository.getFilteredLCharactersList(CharacterByContentType.comics, testId, testOffset);
+      final result = await repository.getFilteredLCharactersList(
+          CharacterByContentType.comics, testId, testOffset);
 
       expect(result, Right(characterList));
     });
 
-    test('should return CustomException when getFilteredLCharactersList throws CustomException', () async {
+    test(
+        'should return CustomException when getFilteredLCharactersList throws CustomException',
+        () async {
       final exception = CustomException('Error', 404);
-      
-      when(() => mockDataSource.getFilteredLCharactersList(CharacterByContentType.comics, testId, testOffset)).thenThrow(exception);
 
-      final result = await repository.getFilteredLCharactersList(CharacterByContentType.comics, testId, testOffset);
+      when(() => mockDataSource.getFilteredLCharactersList(
+              CharacterByContentType.comics, testId, testOffset))
+          .thenThrow(exception);
+
+      final result = await repository.getFilteredLCharactersList(
+          CharacterByContentType.comics, testId, testOffset);
 
       expect(result, Left(exception));
     });
 
-    test('should return CustomException when getFilteredLCharactersList throws an unexpected error', () async {
-      when(() => mockDataSource.getFilteredLCharactersList(CharacterByContentType.comics, testId, testOffset)).thenThrow(Exception('Unexpected error'));
+    test(
+        'should return CustomException when getFilteredLCharactersList throws an unexpected error',
+        () async {
+      when(() => mockDataSource.getFilteredLCharactersList(
+              CharacterByContentType.comics, testId, testOffset))
+          .thenThrow(Exception('Unexpected error'));
 
-      final result = await repository.getFilteredLCharactersList(CharacterByContentType.comics, testId, testOffset);
+      final result = await repository.getFilteredLCharactersList(
+          CharacterByContentType.comics, testId, testOffset);
 
-      expect(result, isA<Left<CustomException, List<CharacterPreviewEntity>>>());
+      expect(
+          result, isA<Left<CustomException, List<CharacterPreviewEntity>>>());
     });
 
-    test('should return a list of CharacterPreviewEntity when searchCharacters is called', () async {
-      final characterList = [CharacterPreviewEntity(id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png')];
+    test(
+        'should return a list of CharacterPreviewEntity when searchCharacters is called',
+        () async {
+      final characterList = [
+        CharacterPreviewEntity(
+            id: testId, name: 'Spider-Man', thumbnail: 'thumbnail.png')
+      ];
 
-      when(() => mockDataSource.searchCharacters(testName)).thenAnswer((_) async => characterList);
+      when(() => mockDataSource.searchCharacters(testName))
+          .thenAnswer((_) async => characterList);
 
       final result = await repository.searchCharacters(testName);
 
       expect(result, Right(characterList));
     });
 
-    test('should return CustomException when searchCharacters throws CustomException', () async {
+    test(
+        'should return CustomException when searchCharacters throws CustomException',
+        () async {
       final exception = CustomException('Error', 404);
-      
-      when(() => mockDataSource.searchCharacters(testName)).thenThrow(exception);
+
+      when(() => mockDataSource.searchCharacters(testName))
+          .thenThrow(exception);
 
       final result = await repository.searchCharacters(testName);
 
       expect(result, Left(exception));
     });
 
-    test('should return CustomException when searchCharacters throws an unexpected error', () async {
-      when(() => mockDataSource.searchCharacters(testName)).thenThrow(Exception('Unexpected error'));
+    test(
+        'should return CustomException when searchCharacters throws an unexpected error',
+        () async {
+      when(() => mockDataSource.searchCharacters(testName))
+          .thenThrow(Exception('Unexpected error'));
 
       final result = await repository.searchCharacters(testName);
 
-      expect(result, isA<Left<CustomException, List<CharacterPreviewEntity>>>());
+      expect(
+          result, isA<Left<CustomException, List<CharacterPreviewEntity>>>());
     });
   });
 }

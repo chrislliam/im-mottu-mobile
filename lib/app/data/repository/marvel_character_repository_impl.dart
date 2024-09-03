@@ -12,7 +12,8 @@ class MarvelCharacterRepositoryImpl implements MarvelCharacterRepository {
   MarvelCharacterRepositoryImpl(this._datasource);
 
   @override
-  Future<Either<CustomException, CharacterOverviewEntity>> getCharacterById(int id) async {
+  Future<Either<CustomException, CharacterOverviewEntity>> getCharacterById(
+      int id) async {
     try {
       final character = await _datasource.getCharacterById(id);
       return Right(character);
@@ -24,7 +25,8 @@ class MarvelCharacterRepositoryImpl implements MarvelCharacterRepository {
   }
 
   @override
-  Future<Either<CustomException, List<CharacterPreviewEntity>>> getCharacters(int offset) async {
+  Future<Either<CustomException, List<CharacterPreviewEntity>>> getCharacters(
+      int offset) async {
     try {
       final list = await _datasource.getCharacters(offset);
       return Right(list);
@@ -36,10 +38,12 @@ class MarvelCharacterRepositoryImpl implements MarvelCharacterRepository {
   }
 
   @override
-  Future<Either<CustomException, List<CharacterPreviewEntity>>> getFilteredLCharactersList(
-      CharacterByContentType filter, int id, offset) async {
+  Future<Either<CustomException, List<CharacterPreviewEntity>>>
+      getFilteredLCharactersList(
+          CharacterByContentType filter, int id, offset) async {
     try {
-      final list = await _datasource.getFilteredLCharactersList(filter, id, offset);
+      final list =
+          await _datasource.getFilteredLCharactersList(filter, id, offset);
       return Right(list);
     } on CustomException catch (e) {
       return Left(e);
@@ -49,7 +53,8 @@ class MarvelCharacterRepositoryImpl implements MarvelCharacterRepository {
   }
 
   @override
-  Future<Either<CustomException, List<CharacterPreviewEntity>>> searchCharacters(String name) async {
+  Future<Either<CustomException, List<CharacterPreviewEntity>>>
+      searchCharacters(String name) async {
     try {
       final list = await _datasource.searchCharacters(name);
       return Right(list);
