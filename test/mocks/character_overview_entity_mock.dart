@@ -5,6 +5,12 @@ class CharacterOverviewEntityMock {
     CharacterOverviewEntity(
       description: 'Não é problema meu',
       id: 1,
+      firstEncounter: CharacterFirstEncounter(
+        firstComicId: 1,
+        firstSerieId: 1,
+        firstEventId: 1,
+        firstStoryId: 1,
+      ),
       name: 'Homem Aranha (Tobey maguire)',
       thumbnail: 'spiderman_thumbnail.jpg',
     )
