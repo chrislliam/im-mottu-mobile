@@ -87,6 +87,9 @@ class MarvelCharacterDataSourceImpl implements MarvelCharacterDataSource {
       var list = <CharacterPreviewEntity>[];
       final isConnected = await _networkInfo.isConnected;
       if (isConnected) {
+        if (id == 0) {
+          return list;
+        }
         final response = await _client.get('${filter.name}/$id/characters',
             queryParameters: {'offset': offset});
 
