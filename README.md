@@ -5,7 +5,7 @@ Foi utilizado clean arch com o package get para o gerenciamento de rotas, injeç
 Segue os critérios seguidos:
 
 - [x] Executar etapas iniciais;
-- [] Criar uma Splashscreen customizada;
+- [ ] Criar uma Splashscreen customizada;
 - [x] Guardar em cache as consultas realizadas na API Marvel;
 - [x] Limpar cache de consultas no fechamento do APP;
 - [x] Mostrar a listagem dos personagens (imagem e nome);
@@ -18,6 +18,6 @@ Segue os critérios seguidos:
 
 # Pontos extras (opcional):
 - [x] Utilizar Getx.
-- [] Configurar Firebase crashlytics.
+- [ ] Configurar Firebase crashlytics.
 - [x] Criar channel em kotlin, capturar a mudança de conexão, e mostrar uma mensagem de offline no flutter.
 - [x] Criar em alguma arquitetura(MVC, MVVM, MVP, MVU)
