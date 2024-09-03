@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'network_info_datasource.dart';
 
@@ -23,8 +24,21 @@ class NetworkInfo extends GetxController {
   void _initializeConnectivity() {
     connectivitySubscription =
         _networkInfoDatasource.onConnectivityChanged.listen((status) {
+      _showConnectivityStatus(status);
       hasConnection.value = status;
     });
+  }
+
+  void _showConnectivityStatus(bool status) {
+    if (!status) {
+      Get.snackbar(
+        'Desconectado',
+        'Você está offline, favor verificar sua conexão com a internet.',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
   @override
