@@ -5,11 +5,11 @@ Foi utilizado clean arch com o package get para o gerenciamento de rotas, injeç
 Segue os critérios seguidos:
 
 - [x] Executar etapas iniciais;
-- [ ] Criar uma Splashscreen customizada;
+- [x] Criar uma Splashscreen customizada;
 - [x] Guardar em cache as consultas realizadas na API Marvel;
 - [x] Limpar cache de consultas no fechamento do APP;
 - [x] Mostrar a listagem dos personagens (imagem e nome);
-- [ ] Criar um filtro para a listagem;
+- [x] Criar um filtro para a listagem;
 - [x] Ciar uma paginação da listagem;
 - [x] Ação de clique nos cards da listagem e exibir os detalhes (imagem, nome, descrição e personagens relacionados);
 - [x] Ação de clique nos personagens relacionados e exibir os detalhes (imagem, nome, descrição e personagens relacionados);
