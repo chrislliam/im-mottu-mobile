@@ -9,6 +9,7 @@ import '../../../domain/usecases/get_filtered_characters_list_usecase.dart';
 import '../../../domain/usecases/search_characters_usecase.dart';
 import '../../../presentation/controllers/character_overview_controller.dart';
 import '../../../presentation/controllers/home_page_controller.dart';
+import '../../../presentation/controllers/splash_page_controller.dart';
 import '../constants/constants.dart';
 import '../http_client/http_client.dart';
 import '../../network/network_info.dart';
@@ -58,6 +59,9 @@ class DependencyInjection {
     //Controllers
     Get.lazyPut<NetworkInfo>(
       () => NetworkInfo(Get.find<NetworkInfoDatasource>()),
+    );
+    Get.lazyPut<SplashPageController>(
+      () => SplashPageController(),
     );
     Get.lazyPut<HomePageController>(
       () => HomePageController(Get.find<GetCharactersUsecase>()),
