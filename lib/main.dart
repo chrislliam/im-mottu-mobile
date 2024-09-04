@@ -50,7 +50,7 @@ class _AppWidgetState extends State<AppWidget> with WidgetsBindingObserver {
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
-      initialRoute: '/home',
+      initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const SplashPage()),
         GetPage(name: '/home', page: () => const HomePage()),
