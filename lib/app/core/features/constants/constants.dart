@@ -10,4 +10,6 @@ class Constants {
       'com.mottu.marvel.im_mottu_mobile/connectivity/event';
   static const connectivityMethodChannel =
       'com.mottu.marvel.im_mottu_mobile/connectivity/method';
+
+  static const marvelLogo = 'assets/marvel_logo.png';
 }
