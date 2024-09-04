@@ -4,9 +4,8 @@ import '../../../data/datasources/marvel_character_datasource.dart';
 import '../../../data/repository/marvel_character_repository_impl.dart';
 import '../../../domain/repository/marvel_character_repository.dart';
 import '../../../domain/usecases/get_character_by_id_usecase.dart';
-import '../../../domain/usecases/get_characters_usecase.dart';
+import '../../../domain/usecases/fetch_characters_usecase.dart';
 import '../../../domain/usecases/get_filtered_characters_list_usecase.dart';
-import '../../../domain/usecases/search_characters_usecase.dart';
 import '../../../presentation/controllers/character_overview_controller.dart';
 import '../../../presentation/controllers/home_page_controller.dart';
 import '../../../presentation/controllers/splash_page_controller.dart';
@@ -42,11 +41,8 @@ class DependencyInjection {
     );
 
     // Use Cases
-    Get.lazyPut<GetCharactersUsecase>(
-      () => GetCharactersUsecase(Get.find<MarvelCharacterRepository>()),
-    );
-    Get.lazyPut<SearchCharactersUsecase>(
-      () => SearchCharactersUsecase(Get.find<MarvelCharacterRepository>()),
+    Get.lazyPut<FetchCharactersUsecase>(
+      () => FetchCharactersUsecase(Get.find<MarvelCharacterRepository>()),
     );
     Get.lazyPut<GetFilteredCharactersListUsecase>(
       () => GetFilteredCharactersListUsecase(
@@ -64,7 +60,7 @@ class DependencyInjection {
       () => SplashPageController(),
     );
     Get.lazyPut<HomePageController>(
-      () => HomePageController(Get.find<GetCharactersUsecase>()),
+      () => HomePageController(Get.find<FetchCharactersUsecase>()),
     );
 
     Get.put<CharacterOverviewController>(CharacterOverviewController(

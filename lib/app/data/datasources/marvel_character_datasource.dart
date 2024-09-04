@@ -10,12 +10,10 @@ import '../adapters/character_overview_adapter.dart';
 import '../adapters/character_preview_adapter.dart';
 
 abstract interface class MarvelCharacterDataSource {
-  Future<List<CharacterPreviewEntity>> getCharacters(int offset);
+  Future<List<CharacterPreviewEntity>> fetchCharacters(int offset, String name);
 
   Future<List<CharacterPreviewEntity>> getFilteredLCharactersList(
       CharacterByContentType filter, int id, int offset);
-
-  Future<List<CharacterPreviewEntity>> searchCharacters(String name);
 
   Future<CharacterOverviewEntity> getCharacterById(int id);
 }
@@ -54,13 +52,16 @@ class MarvelCharacterDataSourceImpl implements MarvelCharacterDataSource {
   }
 
   @override
-  Future<List<CharacterPreviewEntity>> getCharacters(int offset) async {
+  Future<List<CharacterPreviewEntity>> fetchCharacters(
+      int offset, String name) async {
     try {
       var list = <CharacterPreviewEntity>[];
       final isConnected = await _networkInfo.isConnected;
       if (isConnected) {
-        final response = await _client
-            .get('characters', queryParameters: {'offset': offset});
+        final response = await _client.get('characters', queryParameters: {
+          'offset': offset,
+          if (name.isNotEmpty) 'nameStartsWith': name
+        });
 
         if (response.statusCode == 200) {
           final results = response.data['data']['results'] as List;
@@ -92,33 +93,6 @@ class MarvelCharacterDataSourceImpl implements MarvelCharacterDataSource {
         }
         final response = await _client.get('${filter.name}/$id/characters',
             queryParameters: {'offset': offset});
-
-        if (response.statusCode == 200) {
-          final results = response.data['data']['results'] as List;
-          list = CharacterPreviewAdapter.fromJsonList(results);
-          await LocalStorage.saveCache(Constants.characters, results);
-        } else {
-          throw CustomException(
-              response.data['data']['message'], response.statusCode);
-        }
-      } else {
-        final results = await LocalStorage.getCache<List>(Constants.characters);
-        list = CharacterPreviewAdapter.fromJsonList(results);
-      }
-      return list;
-    } catch (e) {
-      throw CustomException(e.toString(), null);
-    }
-  }
-
-  @override
-  Future<List<CharacterPreviewEntity>> searchCharacters(String name) async {
-    try {
-      var list = <CharacterPreviewEntity>[];
-      final isConnected = await _networkInfo.isConnected;
-      if (isConnected) {
-        final response = await _client
-            .get('characters', queryParameters: {'nameStartsWith': name});
 
         if (response.statusCode == 200) {
           final results = response.data['data']['results'] as List;
