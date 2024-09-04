@@ -10,7 +10,7 @@ import '../adapters/character_overview_adapter.dart';
 import '../adapters/character_preview_adapter.dart';
 
 abstract interface class MarvelCharacterDataSource {
-  Future<List<CharacterPreviewEntity>>fetchCharacters(int offset, String name);
+  Future<List<CharacterPreviewEntity>> fetchCharacters(int offset, String name);
 
   Future<List<CharacterPreviewEntity>> getFilteredLCharactersList(
       CharacterByContentType filter, int id, int offset);
@@ -52,16 +52,16 @@ class MarvelCharacterDataSourceImpl implements MarvelCharacterDataSource {
   }
 
   @override
-  Future<List<CharacterPreviewEntity>> fetchCharacters(int offset, String name) async {
+  Future<List<CharacterPreviewEntity>> fetchCharacters(
+      int offset, String name) async {
     try {
       var list = <CharacterPreviewEntity>[];
       final isConnected = await _networkInfo.isConnected;
       if (isConnected) {
-        final response = await _client
-            .get('characters', queryParameters: {'offset': offset,
-         if(name.isNotEmpty)   'nameStartsWith': name
-            
-            });
+        final response = await _client.get('characters', queryParameters: {
+          'offset': offset,
+          if (name.isNotEmpty) 'nameStartsWith': name
+        });
 
         if (response.statusCode == 200) {
           final results = response.data['data']['results'] as List;
@@ -111,5 +111,4 @@ class MarvelCharacterDataSourceImpl implements MarvelCharacterDataSource {
       throw CustomException(e.toString(), null);
     }
   }
-
 }

@@ -52,20 +52,26 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontSize: 20),
                         ))
                       : controller.characters.isEmpty
-                          ? const Center(child: Text('Nenhum peronagem encontrado'))
+                          ? const Center(
+                              child: Text('Nenhum peronagem encontrado'))
                           : ListView.separated(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
-                              separatorBuilder: (context, index) => const SizedBox(height: 24),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(height: 24),
                               controller: controller.scrollController,
                               itemCount: controller.characters.length + 1,
                               itemBuilder: (context, index) {
                                 if (index < controller.characters.length) {
-                                  final character = controller.characters[index];
+                                  final character =
+                                      controller.characters[index];
                                   return MarvelCharacterCard(
-                                      key: ValueKey('character${character.id}'), preview: character);
+                                      key: ValueKey('character${character.id}'),
+                                      preview: character);
                                 }
                                 return controller.isLoading.value
-                                    ? const Center(child: CircularProgressIndicator())
+                                    ? const Center(
+                                        child: CircularProgressIndicator())
                                     : const SizedBox.shrink();
                               },
                             ),
@@ -117,7 +123,8 @@ class _CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             borderSide: const BorderSide(color: Color(0xFFC8102E), width: 2),
           ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         ),
       ),
     );

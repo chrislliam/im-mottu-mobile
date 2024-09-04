@@ -25,7 +25,8 @@ class MarvelCharacterRepositoryImpl implements MarvelCharacterRepository {
   }
 
   @override
-  Future<Either<CustomException, List<CharacterPreviewEntity>>> fetchCharacters(int offset, String name) async {
+  Future<Either<CustomException, List<CharacterPreviewEntity>>> fetchCharacters(
+      int offset, String name) async {
     try {
       final list = await _datasource.fetchCharacters(offset, name);
       return Right(list);
@@ -50,5 +51,4 @@ class MarvelCharacterRepositoryImpl implements MarvelCharacterRepository {
       return Left(CustomException(e.toString(), null));
     }
   }
-
 }

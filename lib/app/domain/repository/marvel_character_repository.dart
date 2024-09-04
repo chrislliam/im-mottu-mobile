@@ -5,11 +5,12 @@ import '../entities/character_preview_entity.dart';
 import '../enum/character_by_content_type.dart';
 
 abstract interface class MarvelCharacterRepository {
-  Future<Either<CustomException, List<CharacterPreviewEntity>>> fetchCharacters(int offset, String name);
+  Future<Either<CustomException, List<CharacterPreviewEntity>>> fetchCharacters(
+      int offset, String name);
 
-  Future<Either<CustomException, List<CharacterPreviewEntity>>> getFilteredLCharactersList(
-      CharacterByContentType filter, int id, offset);
+  Future<Either<CustomException, List<CharacterPreviewEntity>>>
+      getFilteredLCharactersList(CharacterByContentType filter, int id, offset);
 
-
-  Future<Either<CustomException, CharacterOverviewEntity>> getCharacterById(int id);
+  Future<Either<CustomException, CharacterOverviewEntity>> getCharacterById(
+      int id);
 }

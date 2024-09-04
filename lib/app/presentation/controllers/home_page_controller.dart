@@ -31,7 +31,9 @@ class HomePageController extends GetxController {
     super.onInit();
     initialize();
     scrollController.addListener(() async {
-      if (scrollController.position.pixels >= scrollController.position.maxScrollExtent && !isLoading.value) {
+      if (scrollController.position.pixels >=
+              scrollController.position.maxScrollExtent &&
+          !isLoading.value) {
         await _loadCharacters();
       }
     });
@@ -48,9 +50,11 @@ class HomePageController extends GetxController {
         characters.clear();
         offset = 0;
 
-        final result = await _charactersUsecase(offset: offset, name: searchController.text);
+        final result = await _charactersUsecase(
+            offset: offset, name: searchController.text);
         final list = result.fold((l) => throw l, (r) => r);
-        final newItems = list.where((character) => !characters.any((existing) => existing.id == character.id));
+        final newItems = list.where((character) =>
+            !characters.any((existing) => existing.id == character.id));
         characters.addAll(newItems);
         offset = characters.length;
       } on CustomException catch (e) {
@@ -79,10 +83,12 @@ class HomePageController extends GetxController {
   Future<void> _loadCharacters() async {
     try {
       isLoading(true);
-      final result = await _charactersUsecase(offset: offset, name: searchController.text);
+      final result =
+          await _charactersUsecase(offset: offset, name: searchController.text);
       final list = result.fold((l) => throw l, (r) => r);
       if (list.isNotEmpty) {
-        final newItems = list.where((character) => !characters.any((existing) => existing.id == character.id));
+        final newItems = list.where((character) =>
+            !characters.any((existing) => existing.id == character.id));
         characters.addAll(newItems);
         offset = characters.length;
       }

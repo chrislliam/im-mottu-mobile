@@ -7,7 +7,8 @@ import 'package:im_mottu_mobile/app/domain/usecases/fetch_characters_usecase.dar
 
 import '../../../mocks/character_preview_entity_mock.dart';
 
-class MockMarvelCharacterRepository extends Mock implements MarvelCharacterRepository {}
+class MockMarvelCharacterRepository extends Mock
+    implements MarvelCharacterRepository {}
 
 void main() {
   late FetchCharactersUsecase usecase;
@@ -22,8 +23,10 @@ void main() {
   final characters = CharacterPreviewEntityMock.list;
   const searchName = 'Spider';
 
-  test('should return a list of CharacterPreviewEntity from the repository', () async {
-    when(() => mockRepository.fetchCharacters(offset, searchName)).thenAnswer((_) async => Right(characters));
+  test('should return a list of CharacterPreviewEntity from the repository',
+      () async {
+    when(() => mockRepository.fetchCharacters(offset, searchName))
+        .thenAnswer((_) async => Right(characters));
 
     final result = await usecase(offset: offset, name: searchName);
 
@@ -34,7 +37,8 @@ void main() {
 
   test('should return a CustomException when the repository fails', () async {
     final cException = CustomException('Failed to load characters', 500);
-    when(() => mockRepository.fetchCharacters(offset, searchName)).thenAnswer((_) async => Left(cException));
+    when(() => mockRepository.fetchCharacters(offset, searchName))
+        .thenAnswer((_) async => Left(cException));
 
     final result = await usecase(offset: offset, name: searchName);
 

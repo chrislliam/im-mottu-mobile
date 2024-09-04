@@ -36,7 +36,8 @@ class DependencyInjection {
 
     // Repositories
     Get.lazyPut<MarvelCharacterRepository>(
-      () => MarvelCharacterRepositoryImpl(Get.find<MarvelCharacterDataSource>()),
+      () =>
+          MarvelCharacterRepositoryImpl(Get.find<MarvelCharacterDataSource>()),
     );
 
     // Use Cases
@@ -44,7 +45,8 @@ class DependencyInjection {
       () => FetchCharactersUsecase(Get.find<MarvelCharacterRepository>()),
     );
     Get.lazyPut<GetFilteredCharactersListUsecase>(
-      () => GetFilteredCharactersListUsecase(Get.find<MarvelCharacterRepository>()),
+      () => GetFilteredCharactersListUsecase(
+          Get.find<MarvelCharacterRepository>()),
     );
     Get.lazyPut<GetCharacterByIdUsecase>(
       () => GetCharacterByIdUsecase(Get.find<MarvelCharacterRepository>()),
