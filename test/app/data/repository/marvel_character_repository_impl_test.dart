@@ -35,24 +35,12 @@ void main() {
     });
 
     test(
-        'should return CustomException when searchCharacters throws CustomException',
-        () async {
-      when(() => mockDataSource.searchCharacters('Spider'))
-          .thenThrow(CustomException('Error', null));
-
-      final result = await repository.searchCharacters('Spider');
-
-      final value = result.fold((l) => l, (r) => r);
-      expect(value, isA<CustomException>());
-    });
-
-    test(
         'should return CustomException when getCharacters throws CustomException',
         () async {
-      when(() => mockDataSource.getCharacters(1))
+      when(() => mockDataSource.fetchCharacters(1, ''))
           .thenThrow(CustomException('Error', null));
 
-      final result = await repository.getCharacters(1);
+      final result = await repository.fetchCharacters(1, '');
       final value = result.fold((l) => l, (r) => r);
 
       expect(value, isA<CustomException>());
@@ -91,10 +79,10 @@ void main() {
     test(
         'should return List<CharacterPreviewEntity> when getCharacters is called',
         () async {
-      when(() => mockDataSource.getCharacters(0))
+      when(() => mockDataSource.fetchCharacters(1, ''))
           .thenAnswer((_) async => [characterPreview]);
 
-      final result = await repository.getCharacters(0);
+      final result = await repository.fetchCharacters(1, '');
       expect(result, isA<Right>());
       result.fold((l) => null, (r) {
         expect(r, [characterPreview]);
@@ -111,18 +99,6 @@ void main() {
       final result = await repository.getFilteredLCharactersList(
           CharacterByContentType.comics, 1, 0);
 
-      expect(result, isA<Right>());
-      result.fold((l) => null, (r) {
-        expect(r, [characterPreview]);
-      });
-    });
-    test(
-        'should return List<CharacterPreviewEntity> when searchCharacters is called',
-        () async {
-      when(() => mockDataSource.searchCharacters('Spider'))
-          .thenAnswer((_) async => [characterPreview]);
-
-      final result = await repository.searchCharacters('Spider');
       expect(result, isA<Right>());
       result.fold((l) => null, (r) {
         expect(r, [characterPreview]);
